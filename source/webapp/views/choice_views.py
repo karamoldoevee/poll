@@ -14,3 +14,21 @@ class ChoiceListView(ListView):
     paginate_by = 10
     paginate_orphans = 3
 
+class ChoiceForPollCreateView(CreateView):
+    model = Choice
+    template_name = 'comment/create.html'
+    form_class = PollChoiceForm
+
+    def dispatch(self, request, *args, **kwargs):
+        self.poll = self.get_poll()
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        self.poll.choices.create(**form.cleaned_data)
+        return redirect('poll_view', pk=self.poll.pk)
+
+    def get_poll(self):
+        poll_pk = self.kwargs.get('pk')
+        return get_object_or_404(Poll, pk=poll_pk)
+
+
