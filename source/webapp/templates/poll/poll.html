@@ -19,15 +19,15 @@
 {#    {% if is_paginated %}#}
 {#        {% include 'partial/pagination.html' %}#}
 {#    {% endif %}#}
-{#    <div class="comment-list">#}
-{#        {% for comment in comments %}#}
-{#            <div class="comment">#}
-{#                <p>{{ comment.author }} commented at {{ comment.created_at|date:'d.m.Y H:i:s' }}</p>#}
-{#                <div class="pre">{{ comment.text }}</div>#}
+{#    <div class="choice-list">#}
+{#        {% for choice in comments %}#}
+{#            <div class="choice">#}
+{#                <p>{{ choice.author }} commented at {{ choice.created_at|date:'d.m.Y H:i:s' }}</p>#}
+{#                <div class="pre">{{ choice.text }}</div>#}
 {#                {% if article.is_active %}#}
-{#                    <p class="comment-links">#}
-{#                        <a href="{% url 'comment_update' comment.pk %}">Edit</a>#}
-{#                        <a href="{% url 'comment_delete' comment.pk %}">Delete</a>#}
+{#                    <p class="choice-links">#}
+{#                        <a href="{% url 'comment_update' choice.pk %}">Edit</a>#}
+{#                        <a href="{% url 'comment_delete' choice.pk %}">Delete</a>#}
 {#                    </p>#}
 {#                {% endif %}#}
 {#            </div>#}

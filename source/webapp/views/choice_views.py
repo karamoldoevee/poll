@@ -8,7 +8,7 @@ from webapp.forms import ChoiceForm, PollChoiceForm
 from webapp.models import Poll, Choice
 
 class ChoiceListView(ListView):
-    template_name = 'comment/list.html'
+    template_name = 'choice/list.html'
     model = Choice
     context_object_name = 'choices'
     paginate_by = 10
@@ -16,7 +16,7 @@ class ChoiceListView(ListView):
 
 class ChoiceForPollCreateView(CreateView):
     model = Choice
-    template_name = 'comment/create.html'
+    template_name = 'choice/create.html'
     form_class = PollChoiceForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -31,9 +31,17 @@ class ChoiceForPollCreateView(CreateView):
         poll_pk = self.kwargs.get('pk')
         return get_object_or_404(Poll, pk=poll_pk)
 
+class ChoiceCreateView(CreateView):
+    model = Choice
+    template_name = 'choice/create.html'
+    form_class = ChoiceForm
+
+    def get_success_url(self):
+        return reverse('poll_view', kwargs={'pk': self.object.poll.pk})
+
 class ChoiceUpdateView(UpdateView):
     model = Choice
-    template_name = 'comment/update.html'
+    template_name = 'choice/update.html'
     form_class = PollChoiceForm
     context_object_name = 'choice'
 
