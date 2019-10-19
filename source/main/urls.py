@@ -5,8 +5,8 @@ from webapp.views.poll_views import IndexView, PollView, PollCreateView, PollUpd
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    path('article/<int:pk>/', PollView.as_view(), name='poll_view'),
-    path('article/add/', PollCreateView.as_view(), name='poll_add'),
-    path('article/<int:pk>/edit/', PollUpdateView.as_view(), name='poll_update'),
-    path('article/<int:pk>/delete/', PollDeleteView.as_view(), name='poll_delete'),
+    path('poll/<int:pk>/', PollView.as_view(), name='poll_view'),
+    path('poll/add/', PollCreateView.as_view(), name='poll_add'),
+    path('poll/<int:pk>/edit/', PollUpdateView.as_view(), name='poll_update'),
+    path('poll/<int:pk>/delete/', PollDeleteView.as_view(), name='poll_delete'),
 ]
