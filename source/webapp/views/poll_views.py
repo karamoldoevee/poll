@@ -1,4 +1,7 @@
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
 from webapp.models import Poll, Choice
 from webapp.forms import PollForm, ChoiceForm, PollChoiceForm
 from django.core.paginator import Paginator
@@ -31,4 +34,12 @@ class PollView(DetailView):
         context['page_obj'] = page
         context['choices'] = page.object_list
         context['is_paginated'] = page.has_other_pages()
+
+class PollCreateView(CreateView):
+    form_class = PollForm
+    model = Poll
+    template_name = 'poll/create.html'
+
+    def get_success_url(self):
+        return reverse('poll_view', kwargs={'pk': self.object.pk})
 
