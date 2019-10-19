@@ -3,7 +3,7 @@ from webapp.models import Poll, Choice
 
 class ChoiceAdmin(admin.TabularInline):
     model = Choice
-    fields = ['question']
+    fields = ['choice_text']
     extra = 0
 
 class PollAdmin(admin.ModelAdmin):
