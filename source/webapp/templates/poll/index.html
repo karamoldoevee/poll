@@ -18,7 +18,7 @@
 {#{% endblock %}#}
 
 {% block content %}
-    <h1>Задачи:</h1>
+    <h1>Polls:</h1>
     <hr/>
     {% if is_paginated %}
 
@@ -27,7 +27,7 @@
    {% endif %}
     {% for poll in polls %}
         <h2>{{ poll.question }}</h2>
-        <p>{{ poll.question }}created at {{ poll.created_at|date:'d.m.Y H:i:s' }}</p>
+        <p>{{ poll.choices }}
         <p>
             <a href="{% url 'poll_view' poll.pk %}">More</a>
             <a href="{% url 'poll_update' poll.pk %}">Update</a>
