@@ -27,7 +27,6 @@
    {% endif %}
     {% for poll in polls %}
         <h2>{{ poll.question }}</h2>
-        <p>{{ poll.choices }}
         <p>
             <a href="{% url 'poll_view' poll.pk %}">More</a>
             <a href="{% url 'poll_update' poll.pk %}">Update</a>

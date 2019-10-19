@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, ListView, \
     UpdateView, DeleteView
 
@@ -54,10 +54,8 @@ class ChoiceUpdateView(UpdateView):
 
 class ChoiceDeleteView(DeleteView):
     model = Choice
-
-    def dispatch(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().dispatch(request, *args, **kwargs)
+    template_name = 'choice/delete.html'
+    context_object_name = 'choice'
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)

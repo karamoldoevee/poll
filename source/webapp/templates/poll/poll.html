@@ -5,7 +5,6 @@
 {% block menu %}
     <li><a href="{% url 'poll_update' poll.pk %}">Update</a></li>
     <li><a href="{% url 'poll_delete' poll.pk %}">Delete</a></li>
-{#    <li><a href="#add_choice">Add Comment</a></li>#}
 {% endblock %}
 
 {% block content %}
@@ -22,7 +21,7 @@
                 <div class="pre">{{ choice.choice_text}}</div>
                 <p class="choice-links">
                     <a href="{% url 'choice_update' choice.pk %}">Edit</a>
-                    <a href="{% url 'choice_update' choice.pk %}">Delete</a>
+                    <a href="{% url 'choice_delete' choice.pk %}">Delete</a>
                 </p>
             </div>
         {% empty %}
@@ -32,4 +31,7 @@
     {% if is_paginated %}
         {% include 'partial/pagination.html' %}
     {% endif %}
+     <form action="{% url 'poll_choice_create' poll.pk %}" method="POST" id="add_choice">
+            {% include 'partial/form.html' with button_text='Add' %}
+        </form>
 {% endblock %}
